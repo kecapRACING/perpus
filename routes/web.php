@@ -17,16 +17,19 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\DaftarbukuControllers;
 use App\Http\Controllers\PeminjamanController;
-Route::get('/peminjaman', [PeminjamanController::class, 'index'])->name('peminjaman.index');
+// Route::get('/peminjaman', [PeminjamanController::class, 'index'])->name('peminjaman.index');
+
+
+Route::get('/books', [BookController::class, 'index'])->name('books.index');
+
 
 // Route untuk halaman pinjam buku
-Route::get('/peminjaman/{id}', [PeminjamanController::class, 'show'])->name('peminjaman.create');
-Route::get('/peminjaman', [PeminjamanController::class, 'index'])->name('peminjaman');
+Route::get('/peminjaman', [PeminjamanController::class, 'index'])->name('books.peminjaman');
+// Route::get('/peminjaman/{id}', [PeminjamanController::class, 'show'])->name('peminjaman.show');
 // Route for Daftar Buku page
-Route::get('/peminjaman/{id}', [PeminjamanController::class, 'create'])->name('peminjaman.create');
+Route::get('/peminjaman/{id}', [PeminjamanController::class, 'detail'])->name('books.detail');
+Route::get('/peminjaman/{id}/reservasi', [PeminjamanController::class, 'create'])->name('peminjaman.create');
 Route::post('/peminjaman', [PeminjamanController::class, 'store'])->name('peminjaman.store');
-
-Route::get('/daftar-buku', [DaftarbukuControllers::class, 'index'])->name('daftar-buku');
 
 
 Route::get('/books', [BookController::class, 'index'])->name('books.index');

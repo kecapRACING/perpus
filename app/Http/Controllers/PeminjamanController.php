@@ -3,26 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pustaka;
+use App\Models\Transaksi;
+use App\Models\Peminjaman;
 use Illuminate\Http\Request;
-use App\Models\Peminjaman; 
+
 class PeminjamanController extends Controller
 {
     public function index()
     {
         // Ambil data peminjaman dari database
-        $peminjamen = Peminjaman::all();
+        $userId = auth()->user()->id_anggota;
+        $transaksi = Transaksi::where('id_anggota', $userId)->get();
         // Kirim data ke view peminjaman.index
-        return view('peminjaman.index', compact('peminjamen'));
+        // dd($transaksi);
+        return view('books.peminjaman', compact('transaksi'));
     }
 
-    public function create($id)
+    public function detail($id)
     {
         // Cek apakah pustaka dengan ID tersebut ada
         $pustaka = Pustaka::find($id);
 
         // Jika pustaka ditemukan, lanjutkan
         if ($pustaka) {
-            return view('peminjaman.create', compact('pustaka'));
+            return view('books.detailBuku', compact('pustaka'));
         }
 
         // Jika pustaka tidak ditemukan
@@ -34,14 +38,39 @@ class PeminjamanController extends Controller
     {
         // Logic untuk menampilkan detail buku yang akan dipinjam
         $pustaka = Pustaka::findOrFail($id);
-        return view('peminjaman.show', compact('pustaka'));
+        return view('books.detailBuku', compact('pustaka'));
+    }
+
+    public function create(Request $request, $id)
+    {
+        $pustaka = Pustaka::where('id_pustaka', $id)->first();
+        return view('books.createReservasi', compact('pustaka'));
     }
 
     public function store(Request $request)
     {
-        // Logic untuk memproses peminjaman buku
-        // Simpan data peminjaman ke database
-        session()->flash('success', 'Buku berhasil dipinjam!');
-        return redirect()->route('daftar-buku');
+        $request->validate([
+            'id_anggota' => 'required',
+            'id_pustaka' => 'required',
+            'tgl_pinjam' => 'required|date',
+            'tgl_kembali' => 'required|date|after_or_equal:tgl_pinjam|before_or_equal:' . now()->addDays(7)->toDateString(),
+            'keterangan' => 'required|max:50',
+        ], [
+            'tgl_kembali.after_or_equal' => 'Tanggal kembali tidak boleh lebih kecil dari tanggal pinjam.',
+            'tgl_kembali.before_or_equal' => 'Tanggal kembali tidak boleh lebih dari 7 hari setelah tanggal pinjam.',
+        ]);
+
+        // Menyimpan data transaksi
+        $transaksi = new Transaksi();
+        $transaksi->id_pustaka = $request->input('id_pustaka');
+        $transaksi->id_anggota = $request->input('id_anggota');
+        $transaksi->tgl_pinjam = $request->input('tgl_pinjam');
+        $transaksi->tgl_kembali = $request->input('tgl_kembali');
+        $transaksi->keterangan = $request->input('keterangan');
+        // $transaksi->status = 'pending';
+        $transaksi->save();
+
+        return redirect()->route('books.peminjaman');
     }
+
 }

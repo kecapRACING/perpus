@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
+
+    
+
     public function index()
     {
 
