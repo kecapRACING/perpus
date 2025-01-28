@@ -57,4 +57,9 @@ class Pustaka extends Model
     {
         return $this->belongsTo(Pengarang::class, 'id_pengarang');
     }
+
+    public function transaksis()
+    {
+        return $this->hasMany(Transaksi::class, 'id_transaksi' );
+    }
 }

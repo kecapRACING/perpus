@@ -217,21 +217,26 @@
     @endauth
 
     <!-- Testimoni Section -->
-    <section class="py-12 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="section-title">Apa Kata Pengguna Kami?</h2>
-            <div class="testimonials-container">
-                <div class="testimonial-card">
-                    <p class="text-gray-600">"Perpustakaan digital ini sangat membantu saya dalam belajar, terutama saat menghadapi ujian. Buku-buku tersedia dengan mudah dan cepat!"</p>
-                    <p class="mt-4 font-semibold text-gray-800">- Andi, Siswa</p>
-                </div>
-                <div class="testimonial-card">
-                    <p class="text-gray-600">"Akses ke berbagai materi digital membuat saya lebih fleksibel dalam belajar di mana saja dan kapan saja."</p>
-                    <p class="mt-4 font-semibold text-gray-800">- Budi, Guru</p>
-                </div>
+    <section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-6">
+        <h2 class="text-3xl font-semibold text-center text-gray-800 mb-12">Apa Kata Pengguna Kami?</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Testimonial 1 -->
+            <div class="testimonial-card p-8 bg-white rounded-xl shadow-xl hover:shadow-2xl transition duration-300">
+                <p class="text-gray-600 text-lg italic">"Perpustakaan digital ini sangat membantu saya dalam belajar, terutama saat menghadapi ujian. Buku-buku tersedia dengan mudah dan cepat!"</p>
+                <p class="mt-6 text-lg font-semibold text-gray-800">- Andi, Siswa</p>
+            </div>
+            
+            <!-- Testimonial 2 -->
+            <div class="testimonial-card p-8 bg-white rounded-xl shadow-xl hover:shadow-2xl transition duration-300">
+                <p class="text-gray-600 text-lg italic">"Akses ke berbagai materi digital membuat saya lebih fleksibel dalam belajar di mana saja dan kapan saja."</p>
+                <p class="mt-6 text-lg font-semibold text-gray-800">- Budi, Siswa</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
 
     <!-- Footer -->
     <footer class="py-8 text-center bg-gray-800 text-gray-200">

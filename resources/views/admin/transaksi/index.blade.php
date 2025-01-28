@@ -3,12 +3,25 @@
 @section('header', 'Manajemen Transaksi')
 
 @section('content')
-    <div class="flex justify-between items-center mb-6">
-        <h1 class="text-2xl font-semibold text-gray-800">{{ __('Manajemen Transaksi') }}</h1>
+<div class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-semibold text-gray-800">{{ __('Manajemen Transaksi') }}</h1>
+    <div class="flex space-x-4">
+        <!-- Tombol Tambah Transaksi -->
         <a href="{{ route('transaksi.create') }}" class="bg-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 transition duration-300">
             Tambah Transaksi
         </a>
+
+        <!-- Tombol Hapus Semua -->
+        <form action="{{ route('transaksi.destroy.all') }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus semua data transaksi?')">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="bg-red-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-red-600 transition duration-300">
+                Hapus Semua
+            </button>
+        </form>
     </div>
+</div>
+
 
     @if(session('success'))
         <div class="mb-4 p-4 bg-green-100 text-green-800 border border-green-300 rounded-lg">

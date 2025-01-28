@@ -3,14 +3,15 @@
 @section('header', 'Manajemen Pengarang')
 
 @section('content')
-    <div class="flex justify-between items-center mb-6">
-        <h1 class="text-3xl font-semibold text-gradient bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600">
-            {{ __('Manajemen Pengarang') }}
-        </h1>
-        <a href="{{ route('pengarang.create') }}" class="bg-gradient-to-r from-indigo-500 to-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-gradient-to-r hover:from-indigo-600 hover:to-blue-600 transition duration-300">
-            Tambah Pengarang Baru
-        </a>
-    </div>
+<div class="flex justify-between items-center mb-6">
+    <h1 class="text-3xl font-semibold text-gradient bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-600">
+        {{ __('Manajemen Pengarang') }}
+    </h1>
+    <a href="{{ route('pengarang.create') }}" class="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-lg shadow-md hover:bg-gradient-to-r hover:from-blue-700 hover:to-blue-800 transition duration-300">
+        Tambah Pengarang Baru
+    </a>
+</div>
+
 
     @if(session('success'))
         <div class="mb-4 p-4 bg-green-100 text-green-800 border border-green-300 rounded-lg shadow-lg">

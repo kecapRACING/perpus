@@ -43,9 +43,23 @@ class PeminjamanController extends Controller
 
     public function create(Request $request, $id)
     {
-        $pustaka = Pustaka::where('id_pustaka', $id)->first();
+        // Ambil data buku berdasarkan ID
+        $pustaka = Pustaka::find($id);
+
+        // Jika buku tidak ditemukan
+        if (!$pustaka) {
+            return redirect()->route('books.index')->with('error', 'Buku tidak ditemukan.');
+        }
+
+        // Cek apakah stok buku lebih dari 0
+        if ($pustaka->jml_pinjam <= 0) {
+            return redirect()->route('books.index')->with('error', 'Buku ini sudah habis dan tidak dapat direservasi.');
+        }
+
+        // Lanjutkan ke halaman reservasi jika buku tersedia
         return view('books.createReservasi', compact('pustaka'));
     }
+
 
     public function store(Request $request)
     {
@@ -69,6 +83,14 @@ class PeminjamanController extends Controller
         $transaksi->keterangan = $request->input('keterangan');
         // $transaksi->status = 'pending';
         $transaksi->save();
+        // Mengupdate jumlah pinjam pustaka
+        $pustaka = Pustaka::find($request->input('id_pustaka'));
+
+        // Pastikan jumlah pinjam lebih dari 0 sebelum dikurangi
+        if ($pustaka && $pustaka->jml_pinjam > 0) {
+            $pustaka->decrement('jml_pinjam');
+        }
+        $pustaka = Pustaka::find($request->input('id_pustaka'));
 
         return redirect()->route('books.peminjaman');
     }

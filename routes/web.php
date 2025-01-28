@@ -19,9 +19,11 @@ use App\Http\Controllers\DaftarbukuControllers;
 use App\Http\Controllers\PeminjamanController;
 // Route::get('/peminjaman', [PeminjamanController::class, 'index'])->name('peminjaman.index');
 
+// routes/web.php
+
+Route::get('/books/detail/{id}', [BookController::class, 'detail'])->name('books.detail');
 
 Route::get('/books', [BookController::class, 'index'])->name('books.index');
-
 
 // Route untuk halaman pinjam buku
 Route::get('/peminjaman', [PeminjamanController::class, 'index'])->name('books.peminjaman');
@@ -57,7 +59,9 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('anggota', AnggotaController::class);
     Route::resource('pustaka', PustakaController::class);
     Route::resource('transaksi', TransaksiController::class);
+
+    Route::delete('/admin/transaksi/destroy-all', [TransaksiController::class, 'destroyAll'])->name('transaksi.destroy.all');
+
 });
 
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

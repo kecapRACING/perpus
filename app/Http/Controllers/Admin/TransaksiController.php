@@ -104,4 +104,11 @@ class TransaksiController extends Controller
 
         return redirect()->route('transaksi.index')->with('success', 'Buku berhasil dikembalikan.');
     }
+    public function destroyAll()
+    {
+        // Menghapus semua data transaksi
+        Transaksi::truncate();
+
+        return redirect()->route('transaksi.index')->with('success', 'Semua data transaksi berhasil dihapus.');
+    }
 }

@@ -53,7 +53,7 @@
                     <li>
                         <a href="{{ route('books.peminjaman') }}"
                             class="flex items-center gap-2 p-2 rounded-md hover:bg-gray-800 hover:text-blue-300 transition-all">
-                            <span>📖</span> Peminjaman
+                            <span>📖</span> Transaksi
                         </a>
                     </li>
                 </ul>
@@ -64,6 +64,11 @@
         <main class="flex-1 p-8 ml-64">
             <h2 class="text-4xl font-semibold text-gray-800 text-center mb-8">Daftar Buku</h2>
 
+            @if (session('error'))
+                <div class="p-4 mb-4 text-red-800 bg-red-200 rounded-lg">
+                    {{ session('error') }}
+                </div>
+            @endif
 
             <!-- Pesan Sukses -->
             @if (session('success'))
@@ -74,41 +79,52 @@
             @endif
 
             <!-- Buku dalam Grid -->
+
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-                @foreach ($pustakas as $pustaka)
+                @if($pustakas->isEmpty())
                     <div
-                        class="bg-white shadow-2xl rounded-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-2xl">
-                        <!-- Gambar Buku -->
-                        <div class="aspect-[3/4] overflow-hidden">
-                            <img src="{{ $pustaka->gambar ? asset('storage/' . $pustaka->gambar) : asset('images/default-book.png') }}"
-                                class="w-full h-full object-cover rounded-t-lg transition-all transform hover:scale-110"
-                                alt="Gambar {{ $pustaka->judul_pustaka }}">
-                        </div>
-                        <!-- Informasi Buku -->
-                        <div class="p-6 bg-white shadow-lg rounded-lg hover:shadow-xl transition-shadow duration-300">
-                            <h5
-                                class="text-xl font-semibold text-gray-800 hover:text-blue-500 transition-colors duration-300">
-                                {{ $pustaka->judul_pustaka }}</h5>
-
-                            <div class="mt-2">
-                              
-                                <p class="text-gray-600 text-sm">Tahun: <span
-                                        class="font-medium">{{ $pustaka->tahun_terbit }}</span></p>
-                                <p class="text-gray-600 text-sm">Harga: <span
-                                        class="font-medium">Rp{{ number_format($pustaka->harga_buku, 0, ',', '.') }}</span></p>
-                            </div>
-
-                            <div class="mt-6">
-                                <a href="{{ route('books.detail', ['id' => $pustaka->id_pustaka]) }}"
-                                    class="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 focus:ring-4 focus:ring-blue-300">
-                                    Detail Buku
-                                </a>
-                            </div>
-                        </div>
-
+                        class="col-span-full text-center p-8 bg-gradient-to-r from-blue-50 to-blue-100 text-blue-900 border border-blue-300 rounded-xl shadow-lg">
+                        <p class="text-2xl font-semibold">Tidak ada buku yang tersedia untuk dipinjam.</p>
+                        <p class="text-md mt-3 text-gray-700">Silakan kembalikan buku terlebih dahulu agar Anda dapat
+                            meminjam buku lainnya.</p>
                     </div>
-                @endforeach
+                @else
+                    @foreach ($pustakas as $pustaka)
+                        @if ($pustaka->jml_pinjam >= 0) <!-- Logika hanya menampilkan buku yang memiliki jml_pinjam > 0 -->
+                            <div
+                                class="bg-white shadow-2xl rounded-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-2xl">
+                                <!-- Gambar Buku -->
+                                <div class="aspect-[3/4] overflow-hidden">
+                                    <img src="{{ $pustaka->gambar ? asset('storage/' . $pustaka->gambar) : asset('images/default-book.png') }}"
+                                        class="w-full h-full object-cover rounded-t-lg transition-all transform hover:scale-110"
+                                        alt="Gambar {{ $pustaka->judul_pustaka }}">
+                                </div>
+                                <!-- Informasi Buku -->
+                                <div class="p-6 bg-white shadow-lg rounded-lg hover:shadow-xl transition-shadow duration-300">
+                                    <h5
+                                        class="text-xl font-semibold text-gray-800 hover:text-blue-500 transition-colors duration-300">
+                                        {{ $pustaka->judul_pustaka }}
+                                    </h5>
+                                    <div class="mt-2">
+                                        <p class="text-gray-600 text-sm">Tahun: <span
+                                                class="font-medium">{{ $pustaka->tahun_terbit }}</span></p>
+                                        <p class="text-gray-600 text-sm">Harga: <span
+                                                class="font-medium">Rp{{ number_format($pustaka->harga_buku, 0, ',', '.') }}</span>
+                                        </p>
+                                    </div>
+                                    <div class="mt-6">
+                                        <a href="{{ route('books.detail', ['id' => $pustaka->id_pustaka]) }}"
+                                            class="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 focus:ring-4 focus:ring-blue-300">
+                                            Detail Buku
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
+                @endif
             </div>
+
         </main>
 
     </div>

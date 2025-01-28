@@ -87,7 +87,7 @@
                     </li>
                     <li>
                         <a href="{{ route('books.peminjaman') }}" class="flex items-center gap-2 p-3 rounded-md hover:bg-blue-700 hover:text-white transition-all">
-                            <span>📖</span> Peminjaman
+                            <span>📖</span> Transaksi
                         </a>
                     </li>
                 </ul>

@@ -3,12 +3,13 @@
 @section('header', 'Manajemen Format')
 
 @section('content')
-    <div class="flex justify-between items-center mb-6">
-        <h1 class="text-2xl font-semibold text-gray-800">{{ __('Manajemen Format') }}</h1>
-        <a href="{{ route('format.create') }}" class="bg-gradient-to-r from-teal-500 to-teal-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-gradient-to-r hover:from-teal-600 hover:to-teal-700 transition duration-300">
-            Tambah Format Baru
-        </a>
-    </div>
+<div class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-semibold text-gray-800">{{ __('Manajemen Format') }}</h1>
+    <a href="{{ route('format.create') }}" class="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-gradient-to-r hover:from-blue-600 hover:to-blue-700 transition duration-300">
+        Tambah Format Baru
+    </a>
+</div>
+
 
     @if(session('success'))
         <div class="mb-4 p-4 bg-lime-100 text-lime-800 border border-lime-300 rounded-lg">
