@@ -38,27 +38,28 @@
     </nav>
 
     <!-- Main Layout -->
-    <div class="flex pt-20">
-        <!-- Sidebar -->
-        <aside class="w-64 bg-gray-900 text-white min-h-screen fixed top-0 left-0 shadow-lg transition-all hover:w-72">
-            <div class="px-6 py-8">
-                <h2 class="text-lg font-bold mb-6">Menu Navigasi</h2>
-                <ul class="space-y-4">
-                    <li>
-                        <a href="{{ route('books.index') }}"
-                            class="flex items-center gap-2 p-2 rounded-md hover:bg-gray-800 hover:text-blue-300 transition-all">
-                            <span>📚</span> Daftar Buku
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('books.peminjaman') }}"
-                            class="flex items-center gap-2 p-2 rounded-md hover:bg-gray-800 hover:text-blue-300 transition-all">
-                            <span>📖</span> Transaksi
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </aside>
+    <aside class="w-60 bg-gray-800 text-white min-h-screen fixed top-0 left-0 shadow-lg transition-all hover:w-72">
+    <div class="px-6 py-6">
+        <h2 class="text-xl font-semibold text-gray-200 mb-6">Menu Navigasi</h2>
+        <ul class="space-y-4">
+            <li>
+                <a href="{{ route('books.index') }}" 
+                    class="flex items-center gap-3 p-3 rounded-lg transition-all duration-300 hover:bg-blue-500 hover:text-white">
+                    <span class="text-xl">📚</span>
+                    <span class="text-lg font-medium">Daftar Buku</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('books.peminjaman') }}" 
+                    class="flex items-center gap-3 p-3 rounded-lg transition-all duration-300 hover:bg-blue-500 hover:text-white">
+                    <span class="text-xl">📖</span>
+                    <span class="text-lg font-medium">Transaksi</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</aside>
+
 
         <!-- Content Area -->
         <main class="flex-1 p-8 ml-64">

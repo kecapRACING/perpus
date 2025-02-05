@@ -208,50 +208,63 @@
     </section>
 
     @auth
-    <!-- Call to Action -->
-    <section class="bg-indigo-600 text-white py-12 text-center">
-        <h2 class="text-3xl font-bold">Jelajahi Koleksi Buku Kami Sekarang!</h2>
-        <p class="mt-4">Temukan berbagai buku digital yang siap mendukung proses pembelajaran Anda.</p>
-        <a href="{{ route('books.index') }}" class="btn btn-blue mt-6">Lihat Buku</a>
-    </section>
-    @endauth
+<!-- Call to Action -->
+<section class="bg-indigo-700 text-white py-16 text-center">
+    <div class="max-w-3xl mx-auto px-6">
+        <h2 class="text-4xl font-extrabold">Ayo Jelajahi Koleksi Buku Digital!</h2>
+        <p class="mt-4 text-lg text-gray-200">
+            Ribuan buku siap menemani perjalanan belajarmu. Cari, baca, dan tambah wawasan kapan saja, di mana saja!
+        </p>
+        <a href="{{ route('books.index') }}" class="mt-6 inline-block bg-white text-indigo-700 font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-gray-200 transition duration-300">
+            Lihat Koleksi Buku
+        </a>
+    </div>
+</section>
+@endauth
+
 
     <!-- Testimoni Section -->
     <section class="py-16 bg-gray-50">
     <div class="max-w-7xl mx-auto px-6">
-        <h2 class="text-3xl font-semibold text-center text-gray-800 mb-12">Apa Kata Pengguna Kami?</h2>
+        <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">Ulasan Pengguna Kami</h2>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
             <!-- Testimonial 1 -->
-            <div class="testimonial-card p-8 bg-white rounded-xl shadow-xl hover:shadow-2xl transition duration-300">
-                <p class="text-gray-600 text-lg italic">"Perpustakaan digital ini sangat membantu saya dalam belajar, terutama saat menghadapi ujian. Buku-buku tersedia dengan mudah dan cepat!"</p>
-                <p class="mt-6 text-lg font-semibold text-gray-800">- Andi, Siswa</p>
+            <div class="testimonial-card p-8 bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                <p class="text-gray-600 text-lg italic">"Perpustakaan digital ini sangat mempermudah saya dalam mengakses materi pembelajaran. Fasilitas yang tersedia membuat saya lebih siap menghadapi ujian dengan efisien."</p>
+                <p class="mt-6 text-lg font-medium text-gray-800">- Akbar, Siswa SMK Antartika 1</p>
             </div>
             
             <!-- Testimonial 2 -->
-            <div class="testimonial-card p-8 bg-white rounded-xl shadow-xl hover:shadow-2xl transition duration-300">
-                <p class="text-gray-600 text-lg italic">"Akses ke berbagai materi digital membuat saya lebih fleksibel dalam belajar di mana saja dan kapan saja."</p>
-                <p class="mt-6 text-lg font-semibold text-gray-800">- Budi, Siswa</p>
+            <div class="testimonial-card p-8 bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                <p class="text-gray-600 text-lg italic">"Dengan akses yang mudah dan cepat, perpustakaan digital ini memberikan fleksibilitas untuk belajar di mana saja. Saya merasa lebih siap untuk ujian berkat berbagai materi yang tersedia."</p>
+                <p class="mt-6 text-lg font-medium text-gray-800">- Ibra, Siswa SMK Antartika 1</p>
             </div>
         </div>
     </div>
 </section>
 
 
+
     <!-- Footer -->
-    <footer class="py-8 text-center bg-gray-800 text-gray-200">
-        <div class="max-w-7xl mx-auto">
-            <p>© 2025 Perpustakaan Digital SMK Antartika 1. Semua Hak Dilindungi.</p>
-            <div class="flex justify-center gap-6 mt-4">
-                <a href="https://youtube.com/@smkantartika1sidoarjo726?si=Yk9lG8BciIRya1HO" class="footer-link text-xl hover:text-gray-400">
-                    <i class="material-icons-outlined">play_arrow</i> YouTube
+    <footer class="py-12 bg-gray-900 text-gray-300">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center">
+            <p class="text-lg font-semibold">© 2025 Perpustakaan Digital SMK Antartika 1. Semua Hak Dilindungi.</p>
+            <div class="flex justify-center gap-8 mt-6">
+                <a href="https://youtube.com/@smkantartika1sidoarjo726?si=Yk9lG8BciIRya1HO" class="text-xl hover:text-gray-400 flex items-center gap-2">
+                    <i class="material-icons-outlined">play_arrow</i>
+                    YouTube
                 </a>
-                <a href="https://www.instagram.com/smkantartika1sda?igsh=MWZhcGhwcmhwaTFzdw==" class="footer-link text-xl hover:text-gray-400">
-                    <i class="material-icons-outlined">camera_alt</i> Instagram
+                <a href="https://www.instagram.com/smkantartika1sda?igsh=MWZhcGhwcmhwaTFzdw==" class="text-xl hover:text-gray-400 flex items-center gap-2">
+                    <i class="material-icons-outlined">camera_alt</i>
+                    Instagram
                 </a>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
+
 
     <script>
         // Navbar Scroll Effect
